@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Panel</title>
+    <meta name="theme-color" content="#002fbc" />
+    <!--  build:css assets/css/styles.css  -->
+    <link rel='stylesheet' href='styles.css' type='text/css' />
+    <!--  endbuild  -->
+</head>
+<body id='index'>
+    <!--  build:js assets/js/vendor.js -->
+    <script src='temp/js/vendor.js'></script>
+    <!--  endbuild -->
+
+    <nav class="Admin-Panel__Top-Nav"></nav>
+
+    <section class='Admin-Panel'>
+
+        <aside class="Admin-Panel__sidebar">
+            <div class="attach-middle">
+                <div id='section-toggle-calendar' class="tooltip">
+                    <span class="tooltip-text">Calendar/Events</span>
+                    <img src="assets/img/icons/calendar.svg" alt="calendar icon" />
+                </div>
+                <div id='section-toggle-checklist' class="tooltip">
+                    <span class="tooltip-text">Reminders/Tasks</span>
+                    <img src="assets/img/icons/checklist.svg" alt="checklist-icon" />
+                </div>
+                <div id='section-toggle-files' class="tooltip">
+                    <span class="tooltip-text">Files/Records</span>
+                    <img src="assets/img/icons/paper.svg" alt="files icon" />
+                </div>
+            </div>
+        </aside>
+
+        <aside class="Admin-Panel__sidepane">
+            <div class="_partial" data-view="events/pane"></div>
+<!--            <div class="_partial" data-view="tasks/pane"></div>-->
+<!--            <div class="_partial" data-view="files/pane"></div>-->
+        </aside>
+        <article class='Admin-Panel__content'>
+            <div class='Admin-Panel__background-image' ><div/>
+
+            <div class="_partial" data-view="events/content"></div>
+<!--            <div class="_partial" data-view="tasks/content"></div>-->
+<!--            <div class="_partial" data-view="files/content"></div>-->
+        </article>
+
+    </section>
+
+    <!--  build:js assets/js/admin.js -->
+    <script src='temp/js/app.js'></script>
+    <!--      endbuild -->
+</body>
+</html>

@@ -1,0 +1,122 @@
+/* COLORS */
+    /* BASES */
+    $black : rgb(0, 0, 0);
+    $white : rgb(255, 255, 255);
+    $gray  : rgb(128, 128, 128);
+
+
+    $darkest-gray  : color($black l(+ 10%));
+    $darker-gray   : color($black l(+ 20%));
+    $dark-gray     : color($black l(+ 30%));
+    $light-gray    : color($white l(- 30%));
+    $lighter-gray  : color($white l(- 20%));
+    $lightest-gray : color($white l(- 10%));
+
+    /* CONTEXTUAL COLORS */
+    $brand-default : $lightest-gray;
+    $brand-primary : rgb(51, 122, 183);
+    $brand-success : rgb(92, 184, 92);
+    $brand-info    : rgb(91, 192, 222);
+    $brand-warning : rgb(240, 173, 78);
+    $brand-danger  : rgb(217, 83, 79);
+
+    /* CUSTOM COLORS */
+    $royalBlue  : rgb(65, 105, 225);
+    $mainBlue   : $royalBlue;
+    $mainYellow : rgb(253, 188, 0);
+    $mainOrange : rgb(213, 149, 65);
+
+/* COLORS END */
+
+/* Z-INDEXES  */
+
+    $primary-navZ : 500;
+    $tooltipZ     : 1000;
+
+/* Z-INDEXES END */
+
+/* DEFAULTS */
+
+    $body-bg : $mainBlue;
+    $body-fg : $white;
+    $font-sz : 14px;
+
+    $link-color       : $gray;
+    $link-hover       : color($gray b(+ 5%));
+    $link-hover-decor : underline;
+
+/* DEFAULTS END */
+
+/* MISC. MODULES CONFIG */
+
+/* MISC. MODULES CONFIG END */
+
+/* COMPONENTS */
+    /* BUTTONS */
+    $btn-font-size : 1rem;
+    $btn-vPadding  : 0.75rem;
+    $btn-hPadding  : 1.2rem;
+
+    /* CARDS */
+    $cards-color   : $white;
+    $cards-border  : color($cards-color l(- 5%));
+    $cards-text    : $darkest-gray;
+
+    /* LARGE HERO */
+    $large-hero-background   : rgba(0, 0, 0, 0);
+    $large-hero-border-color : none;
+    $large-hero-title-text   : $white;
+    $large-hero-text         : $large-hero-title-text;
+
+    /* NAVS */
+    $navs-color   : color($mainBlue l(- 5%));
+    $navs-hover   : color($navs-color b(+ 10%));
+    $navs-current : $navs-hover;
+    $navs-active  : $navs-hover;
+
+    $navs-text         : $white;
+    $navs-hover-text   : $navs-text;
+    $navs-current-text : $navs-text;
+    $navs-active-text  : $navs-text;
+
+    $mob-nav-color : $navs-color;
+
+        /* PRIMARY NAV */
+        $primary-navH : 60px;
+        /* FOOTER NAV */
+        $footer-navH  : 30px;
+        /* MOBILE NAV */
+        $mob-navH     : 45px;
+
+    /* FOOTER */
+    $footer-color : $navs-color;
+    $footer-text  : $navs-text;
+
+    /* ROWS */
+    $gutter-width: 2%;
+
+    /* ADMIN */
+        /* SIDEBARS */
+        $sidebarW      : 60px;
+        $sidebar-color : $darker-gray;
+        $sidebar-text  : $gray;
+
+        /* SIDEPANES */
+        $sidepaneW      : 320px;
+        $sidepane-color : $lightest-gray;
+        $sidepane-text  : $dark-gray;
+
+    /* SOCIAL ICONS */
+    $social-icon-bg   : $darker-gray;
+    $social-icon-size : 72px;
+
+    /* SOCIAL MEDIA BUTTONS */
+    $social-button-size : calc($mob-navH + 7px);
+
+    /* TESTIMONIAL */
+    $testimonial-bg       : color($white a(0.75));
+    $testimonial-title    : $brand-primary;
+    $testimonial-subtitle : $brand-info;
+
+    /* WRAPPER */
+    $wrapper-padding: 18px;

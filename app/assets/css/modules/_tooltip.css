@@ -1,0 +1,44 @@
+.tooltip {
+    position: relative;
+    &-text {
+        @media print { display: none !important}
+        transition       : all 0.2s ease-out;
+        visibility       : hidden;
+        opacity          : 0;
+        min-width        : 75px;
+        max-width        : 200px;
+        font-size        : 0.95rem;
+        background-color : #FFF;
+        color            : #555;
+        text-align       : center;
+        border-radius    : 6px;
+        box-shadow       : 0px 2px 2px 1px #111;
+        padding          : 0.35rem 0.5rem;
+        /* Position the tooltip */
+        @mixin vCenter;
+        left: 120%;
+        &.show- {
+            &right { left: 120%  }
+            &left  { left: -180% }
+            &top  {
+                @mixin hCenter;
+                top  : -80%;
+            }
+            &bottom  {
+                @mixin hCenter;
+                top  : 140%;
+            }
+        }
+        @mixin atMedium {
+            min-width  : 80px;
+            max-width  : 280px;
+            font-size  : 1.05rem;
+        }
+    }
+
+    &:hover &-text {
+        z-index: $tooltipZ !important;
+        opacity: 1;
+        visibility: visible;
+    }
+}

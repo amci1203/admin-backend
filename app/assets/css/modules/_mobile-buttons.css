@@ -1,0 +1,125 @@
+.mobile-buttons {
+    @mixin atMedium { display: none }
+    transition       : all 0.3s ease-in;
+    background-color : $navs-color;
+    position         : fixed;
+    z-index          : 1000;
+    bottom           : 0;
+    width            : 100%;
+    height           : $mob-navH;
+    margin-bottom    : calc($mob-navH * -3);
+    &.visible {
+        margin-bottom: 0;
+    }
+    &.nav-open {
+        background-color: $mkBlue;
+    }
+
+    .left {
+        float: left;
+        width: calc(50% - ($mob-navH / 2));
+        button { float: left  }
+    }
+    .right {
+        float: right;
+        width: calc(50% - ($mob-navH / 2));
+        button { float: right }
+    }
+    .center {
+        @mixin deadCenter;
+        button { width: $mob-navH !important }
+    }
+
+    button:not(.menu-toggle) {
+        background-color : transparent;
+        border           : none;
+        border-radius    : calc($mob-navH / 2);
+        width            : 40%;
+        height           : $mob-navH;
+        margin           : 0 5%;
+        &:hover {
+            background-color: $navs-hover;
+        }
+        &.active {
+            background-color: color($navs-hover b(+5));
+        }
+
+        img {
+            height : calc($mob-navH / 2);
+            width  : auto;
+        }
+    }
+
+
+    .menu-toggle {
+        @mixin atMedium { display: none }
+        @mixin hCenter;
+        padding          : 0;
+        z-index          : 300;
+        bottom           : 10px;
+        background-color : $navs-color;
+        width            : 50px;
+        height           : 50px;
+        border           : 1px solid #FFF;
+        border-radius    : 25px;
+
+        .hamburger {
+            @mixin deadCenter;
+            width  : 20px;
+            height : 20px;
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 20px;
+                height: 3px;
+                background-color: #FFF;
+                transition: transform 0.3s ease-out;
+            }
+            .middle {
+                position  : absolute;
+                top       : 50%;
+                left      : 0;
+                transform : translateY(-50%) scaleX(1);
+                width     : 20px;
+                height    : 3px;
+                opacity   : 1;
+                background-color : #FFF;
+                transition       : all 0.3s ease-out;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 20px;
+                height: 3px;
+                background-color: #FFF;
+                transition: transform 0.3s ease-out;
+            }
+        }
+        &--close {
+            background-color : #FFF;
+            .hamburger {
+                left: 27px;
+                &::before {
+                    transform        : rotate(45deg) scaleX(1.25);
+                    transform-origin : top left;
+                    background-color : $navs-color;
+                }
+                .middle {
+                    opacity          : 0;
+                    transform        : scaleX(0);
+                    transform-origin : left;
+                    background-color : $navs-color;
+                }
+                &::after {
+                    transform         : rotate(-45deg) scaleX(1.25);
+                    transform-origin : bottom left;
+                    background-color : $navs-color;
+                }
+            }
+        }
+    }
+}

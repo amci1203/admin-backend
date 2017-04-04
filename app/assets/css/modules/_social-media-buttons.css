@@ -1,0 +1,42 @@
+#social-media-buttons {
+    transition    : all 0.45s ease-in;
+    opacity       : 0;
+    z-index       : $share-buttonsZ;
+    width         : 70px;
+    position      : fixed;
+    @mixin smThanMedium {
+        bottom        : calc($mob-navH + 10px);
+        left          : 15px;
+        margin-bottom : -420px;
+    }
+    @mixin atMedium {
+        top        : calc($primary-navH + 15px);
+        right      : 0;
+        margin-top : -420px;
+    }
+
+    &.visible {
+        @mixin smThanMedium { margin-bottom : 0 }
+        @mixin atMedium     { margin-top    : 0 }
+        opacity: 1;
+    }
+
+    button {
+        background-color : $navs-color;
+        border           : none;
+        border-radius    : calc($social-button-size / 2);
+        padding          : 5px;
+        width            : $social-button-size;
+        height           : $social-button-size;
+        margin           : 10px 0;
+        &:hover {
+            background-color: color($navs-color b(+ 50%));
+        }
+
+        img {
+            height : calc($mob-navH / 2);
+            width  : auto;
+        }
+    }
+}
+

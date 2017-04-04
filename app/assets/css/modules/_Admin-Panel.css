@@ -1,0 +1,105 @@
+.Admin-Panel {
+    height      : 100%;
+
+    &__Top-Nav {
+        background-color: color($royalBlue l(- 25%));
+
+        position : absolute;
+        z-index  : 1000;
+        left     : 0;
+        right    : 0;
+        height   : 45px;
+    }
+
+    > * {
+        position : relative;
+        float    : left;
+        height   : 100%;
+    }
+
+    &__sidebar {
+        background-color : $sidebar-color;
+        color            : $sidebar-text;
+        width            : $sidebarW;
+        z-index          : 200;
+
+        > * {
+            position   : absolute;
+            width      : 96%;
+            margin     : 0 2%;
+            text-align : center;
+
+            button, a.btn, img {
+                @mixin clickable;
+                margin  : 5px 0;
+                padding : 10px;
+
+                &:hover { background-color: $darkest-gray }
+            }
+
+        }
+    }
+
+    &__sidepane {
+        background-color : $sidepane-color;
+        padding          : calc($primary-navH + 15px) 0 25px 0;
+        color            : $sidepane-text;
+        width            : $sidepaneW;
+        z-index          : 100;
+
+        > * > * {
+            position   : absolute;
+            width      : 100%;
+            text-align : center;
+
+            button, a.btn {
+
+            }
+
+        }
+
+    }
+
+
+    &__content {
+        .background-image {
+            position : absolute;
+            opacity  : 0.25;
+            height   : 80%;
+        }
+        width: calc(100% - $sidebarW - $sidepaneW);
+        padding-top: 80px;
+
+        &-panel {
+            background-color: color($white a(0.85));
+            color: $darker-gray;
+            padding: 15px 35px;
+            border-radius: 15px;
+
+            &__heading {
+                font-weight: 300;
+                font-size: 1.35rem;
+                border-bottom: 1px solid $light-gray;
+            }
+        }
+    }
+
+    .attach- {
+        &top {
+            top: 125px;
+        }
+        &middle {
+            top       : 50%;
+            transform : translateY(-50%);
+        }
+        &bottom {
+            bottom: 25px;
+        }
+    }
+
+}
+
+.event-panel {
+    position: relative;
+    top: 180px;
+}

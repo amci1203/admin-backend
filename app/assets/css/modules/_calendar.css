@@ -1,0 +1,76 @@
+.calendar {
+    position: relative;
+    max-width: calc(800px + ($wrapper-padding * 2));
+    min-height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__month {
+        position: absolute;
+        width: 100%;
+        border-radius: 15px;
+        border-collapse: collapse;
+        display: none;
+        z-index: -100;
+        &.active {
+            display: table;
+            z-index: 100;
+        }
+
+        thead:not(.calendar__heading) {
+            background-color: #FFF;
+            color: $royalBlue;
+        }
+        tbody td {
+            &.empty { color: rgba(0, 0, 0, 0) }
+            &:not(.empty) { cursor: pointer }
+            position: relative;
+            padding: 10px 5px;
+            border: 1px solid #FFF;
+            border-collapse: collapse;
+            text-align: right;
+            @mixin atMedium {
+                padding: 20px 10px;
+            }
+            &.active {
+                background-color: #FFF;
+                color: $royalBlue;
+                .has-event {
+                    background-color: $royalBlue;
+                }
+            }
+
+            .has-event {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                height: 15px;
+                width: @height;
+                border-radius: calc(@height / 2);
+                background-color: #FFF;
+            }
+        }
+    }
+
+    &__heading {
+        font-weight: 100;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    &__controls {
+        position: absolute;
+        z-index: 1000;
+        width: 100%;
+    }
+
+    &__next, &__prev {
+        @mixin clickable;
+        position: absolute;
+        background-color: transparent;
+    }
+    &__next { right: 15px }
+    &__prev { left: 15px }
+}
+
+#active-date { font-weight: bold }

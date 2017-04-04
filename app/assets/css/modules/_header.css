@@ -1,0 +1,19 @@
+.header {
+    @mixin atMedium {
+        position: absolute;
+    }
+    z-index: 200;
+    width: 100%;
+    padding: 10px 0;
+    transition: background-color 0.3s ease-out;
+    @mixin atMedium {
+        background-color: rgba($mainBlue, 0.3);
+        position: fixed;
+        &--dark {
+            background-color: rgba(23, 51, 72, 0.85);
+        }
+    }
+    &--menu-open {
+        background-color: rgba($mainBlue, 0.5);
+    }
+}

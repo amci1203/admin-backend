@@ -1,0 +1,31 @@
+$sliding-timeframe      : 0.5s;
+$sliding-timeframe-long : 1.5s;
+
+@keyframes slide-right {
+    from {}
+    to   { transform: translateX(180%); opacity: 0 }
+}
+
+@keyframes slide-left {
+    from {}
+    to   { transform: translateX(-180%); opacity: 0 }
+}
+
+@keyframes zoom-out {
+    from { transform: scale(1.2); opacity: 0 }
+    to   { transform: scale(1.0); opacity: 1 }
+}
+
+@keyframes zoom-in {
+    from { transform: scale(0.8); opacity: 0 }
+    to   { transform: scale(1.0); opacity: 1 }
+}
+
+.slide-right-out  { animation: slide-left  $sliding-timeframe ease-in 0s 1 }
+.slide-left-out   { animation: slide-right $sliding-timeframe ease-in 0s 1 }
+
+.slide-right-in { animation: slide-right $sliding-timeframe ease-in 0s 1 reverse }
+.slide-left-in  { animation: slide-left  $sliding-timeframe ease-in 0s 1 reverse }
+
+.zoom-in  { animation: zoom-in  $sliding-timeframe-long ease-in 0s 1 }
+.zoom-out { animation: zoom-out $sliding-timeframe-long ease-in 0s 1 }

@@ -1,0 +1,42 @@
+.text {
+    &-center  { text-align: center }
+    &-right  { text-align: right  }
+    &-left   { text-align: left   }
+
+    &-xl { font-size: 150% }
+    &-lg { font-size: 125% }
+    &-sm { font-size: 75%  }
+    &-xs { font-size: 50%  }
+
+    &-xlight { font-weight: 100 }
+    &-light  { font-weight: 300 }
+
+    &-center-at-sm { @mixin atSmall { text-align: center } }
+    &-right-at-sm  { @mixin atSmall { text-align: right  } }
+    &-left-at-sm   { @mixin atSmall { text-align: left   } }
+
+    &-center-until-sm  { @mixin isSmall { text-align: center } }
+    &-right-until-sm   { @mixin isSmall { text-align: right  } }
+    &-left-until-sm    { @mixin isSmall { text-align: left   } }
+
+    &-center-at-md { @mixin atLarge { text-align: center } }
+    &-right-at-md  { @mixin atLarge { text-align: right  } }
+    &-left-at-md   { @mixin atLarge { text-align: left   } }
+
+    &-center-until-md  { @mixin smThanLarge { text-align: center } }
+    &-right-until-md   { @mixin smThanLarge { text-align: right  } }
+    &-left-until-md    { @mixin smThanLarge { text-align: left   } }
+
+    &-center-at-lg { @mixin atLarge { text-align: center } }
+    &-right-at-lg  { @mixin atLarge { text-align: right  } }
+    &-left-at-lg   { @mixin atLarge { text-align: left   } }
+
+    &-center-until-lg  { @mixin smThanLarge { text-align: center } }
+    &-right-until-lg   { @mixin smThanLarge { text-align: right  } }
+    &-left-until-lg    { @mixin smThanLarge { text-align: left   } }
+
+
+    &-white  { color: #FFF }
+    &-black  { color: #111 }
+
+}

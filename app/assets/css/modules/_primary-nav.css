@@ -1,0 +1,145 @@
+.primary-nav {
+    z-index          : $primary-navZ;
+    background-color : $navs-color;
+    color            : $navs-text;
+    transition       : all 0.2s ease-in;
+    overflow         : hidden;
+
+    @mixin smThanMedium {
+        position  : fixed;
+        top       : 0;
+        height    : 0;
+        width     : 100%;
+    }
+
+    @mixin atMedium {
+        position      : relative;
+        height        : $primary-navH;
+        padding-top   : 0
+    }
+
+    &--open {
+        height : 100%;
+    }
+
+    &--fixed {
+        @mixin atMedium {
+            position   : fixed;
+            top        : 0;
+            width      : 100%;
+            padding    : 0;
+            margin-top : calc($primary-navH * -1);
+            &.visible {
+                margin-top: 0;
+            }
+        }
+    }
+
+    &__heading {
+        display  : none;
+        position : absolute;
+        left     : 25px;
+        font-weight: 200;
+        @mixin atMedium { display: inline-block }
+    }
+
+    ul {
+        @mixin clearfix;
+        margin     : 0;
+        padding    : 0;
+        text-align : center;
+        @media (max-width: 768px) {
+            @mixin deadCenter;
+            width: 100%;
+        }
+    }
+    &.links-left ul  {
+        text-align  : left;
+        margin-left : 65px;
+    }
+    &.links-right ul {
+        text-align   : right;
+        margin-right : 65px;
+    }
+
+    li {
+        position    : relative;
+        margin      : 0;
+        list-style  : none;
+        font-weight : 300;
+        font-size   : 1rem;
+        display     : block;
+        @mixin smThanMedium {
+            width: 50%;
+            &:nth-child(odd) {
+                float: left;
+            }
+            &:nth-child(even) {
+                float: right;
+            }
+        }
+        @mixin atMedium {
+            display : inline-block;
+        }
+    }
+
+    a {
+        @mixin noTextDecoration;
+        transition  : all 0.2s ease-in;
+        display     : block;
+        width       : 100%;
+        height      : 100%;
+        padding     : calc($primary-navH / 3) 15px;
+        @mixin smThanMedium {
+            font-weight: 700;
+        }
+        @mixin atMedium{
+            font-weight : 100;
+            font-size   : 1.35rem;
+            padding     : calc($primary-navH / 3) 25px;
+        }
+        &:hover  {
+            background-color : $navs-hover;
+            color            : $navs-hover-text;
+        }
+        &.current-link {
+            background-color : $navs-current;
+            color            : $navs-current-text;
+        }
+        &.active {
+            font-weight      : 800;
+            background-color : $navs-active;
+            color            : $navs-active-text;
+        }
+    }
+
+    .button {
+        @mixin clickable;
+        @mixin noTextDecoration;
+        transition  : all 0.2s ease-in;
+        height      : 100%;
+        padding     : calc($primary-navH / 3) 15px;
+        @mixin smThanMedium {
+            font-weight: 700;
+        }
+        @mixin atMedium{
+            background-color : $navs-text;
+            color            : color($navs-color a(1));
+            font-weight      : 300;
+            font-size        : 1.35rem;
+            margin           : 0 7px;
+            margin-top       : 10px;
+            padding          : calc($primary-navH / 10) 25px;
+            border-radius    : 10px;
+        }
+        &:hover {
+            @mixin atMedium {
+                color: $navs-text;
+                background-color: $navs-color;
+            }
+        }
+    }
+}
+
+#index .primary-nav {
+}

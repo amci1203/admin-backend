@@ -1,0 +1,22 @@
+.photo {
+    img {
+        display : block;
+        margin  : 10px auto;
+    }
+    .caption {
+        display    : block;
+        text-align : center;
+    }
+    background-color : #FFF;
+    border           : 1px solid #CCC;
+    box-shadow       : 3px 7px 10px  #222;
+    padding          : 5px 4px 20px 4px;
+    margin-bottom    : 30px;
+    font-family      : cursive;
+    font-size        : 1.15rem;
+
+    &--tilted {
+        &-left {@mixin atMedium { transform: rotate(-7deg) }}
+        &-right {@mixin atMedium { transform: rotate(7deg) }}
+    }
+}

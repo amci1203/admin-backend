@@ -1,0 +1,64 @@
+.cards {
+    margin:  0;
+    padding: 0;
+    &.checklist li { @mixin clickable }
+
+    & > *, a {
+        @mixin noTextDecoration;
+        display: block;
+        list-style-type: none;
+        position: relative;
+        float: none;
+        margin: 20px auto;
+        padding: 20px 15px;
+        color: $cards-text !important;
+        background-color: $cards-color;
+        border: 1px solid $cards-border;
+        box-shadow: 0 5px 16px 1px #111;
+        text-align: center;
+        font-size: 1.25rem;
+        @mixin atMedium {
+            padding: 35px 50px;
+            text-align: left;
+        }
+        .qty {
+            display: none;
+            background-color: $mkBlue;
+            color: #FFF;
+            border: none;
+            border-bottom: 1px solid #FFF;
+            padding: 3px 15px 2px 7px;
+            margin-left: auto;
+            margin-right: 25px;
+            width: 4.8rem;
+            @mixin atMedium {
+                @mixin vCenter;
+                right: 65px;
+                width: 4.35rem;
+            }
+        }
+        .tick {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 60%;
+            @mixin atMedium {
+                @mixin vCenter;
+                right: 35px;
+            }
+        }
+        &.selected {
+            .tick { display: block };
+            .qty  { display: block };
+            color: #FFF;
+            background-color: $mkBlue;
+            border: 1px solid #FFF;
+        }
+    }
+
+    &--blue > *, a {
+        color            : $white !important;
+        border           : 1px solid color($mainBlue l(- 10));
+        background-color : color($mainBlue l(- 15));
+    }
+}

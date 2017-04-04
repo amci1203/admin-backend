@@ -1,0 +1,13 @@
+.social-icons {
+    text-align: center;
+    &__icon {
+        position         : relative;
+        display          : inline-block;
+        margin           : 0 5px 5px 5px;
+        height           : $social-icon-size;
+        width            : $social-icon-size;
+        background-color : $social-icon-bg;
+        @mixin atSmall { margin: 0 5px }
+        .icon { @mixin deadCenter }
+    }
+}
