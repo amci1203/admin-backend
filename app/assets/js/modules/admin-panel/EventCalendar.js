@@ -1,9 +1,9 @@
 import moment from 'moment';
 
-import string  from '../helpers/string';
-import slide   from '../helpers/slide';
-import php     from '../helpers/php';
-import State   from '../helpers/State';
+import string  from '../../helpers/string';
+import slide   from '../../helpers/slide';
+import php     from '../../helpers/php';
+import State   from '../../helpers/State';
 
 export default function EventCalendar () {
 
@@ -14,46 +14,15 @@ export default function EventCalendar () {
                 singles  : {},
                 annually : {},
                 weekly   : {
-                    'Sun': [],
-                    'Mon': [],
-                    'Tue': [],
-                    'Wed': [],
-                    'Thu': [],
-                    'Fri': [],
-                    'Sat': [],
+                    'Sun': [], 'Mon': [], 'Tue': [], 'Wed': [],
+                    'Thu': [], 'Fri': [], 'Sat': [],
                 },
                 monthly  : {
-                    '01': [],
-                    '02': [],
-                    '03': [],
-                    '04': [],
-                    '05': [],
-                    '06': [],
-                    '07': [],
-                    '08': [],
-                    '09': [],
-                    '10': [],
-                    '11': [],
-                    '12': [],
-                    '13': [],
-                    '14': [],
-                    '15': [],
-                    '16': [],
-                    '17': [],
-                    '18': [],
-                    '19': [],
-                    '20': [],
-                    '21': [],
-                    '22': [],
-                    '23': [],
-                    '24': [],
-                    '25': [],
-                    '26': [],
-                    '27': [],
-                    '28': [],
-                    '29': [],
-                    '30': [],
-                    '31': []
+                    '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [],
+                    '08': [], '09': [], '10': [], '11': [], '12': [], '13': [], '14': [],
+                    '15': [], '16': [], '17': [], '18': [], '19': [], '20': [], '21': [],
+                    '22': [], '23': [], '24': [], '25': [], '26': [], '27': [], '28': [],
+                    '29': [], '30': [], '31': []
                 }
             },
         // IDs
@@ -80,13 +49,13 @@ export default function EventCalendar () {
 
         // initial date stuff
         currentDate     = moment(),
-        shortDateFormat = 'ddd',
+        shortDateName   = 'ddd',
         currentYear     = currentDate.format('YYYY'),
-        firstDayOfYear  = moment(`${currentYear}-01-01`).format(shortDateFormat),
+        firstDayOfYear  = moment(`${currentYear}-01-01`).format(shortDateName),
 
         // date functions
         printActiveDay = () => moment(state.get('day')).format('dddd, MMMM D YYYY'),
-        dayOfWeek      = day => moment(day).format(shortDateFormat),
+        getDayOfWeek   = day => moment(day).format(shortDateName),
 
         // event shorthands
         event     = (type, elm, func) => elm.addEventListener(type, func),
@@ -182,9 +151,11 @@ export default function EventCalendar () {
                     }
 
                     const monthDigit = String(i + 1).padLeft(2,0),
-                          dayDigit   = String(j + 1).padLeft(2,0);
+                          dayDigit   = String(j + 1).padLeft(2,0),
+                          dateString = `${year}-${monthDigit}-${dayDigit}`,
+                          weekday    = getDayOfWeek(dateString);
 
-                    days += `<td id='${year}-${monthDigit}-${dayDigit}'>${j + 1}</td>`;
+                    days += `<td id='${dateString}' data-weekday='${weekday}'>${j + 1}</td>`;
 
                     if (dayOfWeek == 6) days += '</tr>';
 
@@ -273,33 +244,35 @@ export default function EventCalendar () {
     }
 
     // Fetches all events
-    // Groups event names by 'repeats' value, to make them easier to retrieve
     function getEvents (callback) {
-        php('database', 'getEvents', data => pushEvents(JSON.parse(data), state.get('events')) );
+        php('database', 'getEvents', data => {
+            const
+                arrStart = data.indexOf('['),
+                events   = arrStart != -1 ? JSON.parse(data.substring(arrStart)) : false;
+            if (data.charAt(0) == '<')  console.log(data.substring(0, arrStart));
+            if (events) pushEvents(events, state.get('events'));
+        });
     }
 
     // does the actual pushing--used by getEvents and postEvents since they both push events up into the object.
     function pushEvents (data, events) {
         [...data].forEach(elm => {
-            console.log(elm.date)
             const
                 repeats  = elm.repeats,
                 hasEvent = date => {
-//                    const isPastYear = +date.slice(0,4) < +currentYear;
-//                    console.log(isPastYear);
-//                    if (isPastYear) return false;
-//                    const
-//                        thisDay  = document.getElementById(date),
-//                        hasEvent = thisDay.querySelector('.hasEvent');
-//                    if (hasEvent) {
-//                        thisDay.innerHTML += '<span class="has-event"></span>';
-//                    }
+//                    console.log(date);
+//                    console.log(repeats);
+                    const thisDay  = document.getElementById(date);
+                    if (!thisDay.querySelector('.hasEvent')) {
+                        thisDay.innerHTML += '<span class="has-event"></span>';
+                    }
                 };
 
             let day, startFrom;
 
             switch (repeats) {
                 case 'annually':
+                    day = elm.date.substring(5);
                     if (!events.annually[day]) {
                         events.annually[day] = [elm];
                         hasEvent(`${currentYear}-${day}`);
@@ -313,14 +286,26 @@ export default function EventCalendar () {
                     day = elm.date.substr(-2);
                     startFrom = elm.date.substring(0,5) == currentYear ? moment(elm.date).format('M') : 1
                     for (let i = startFrom; i < 12; i++) {
-                        const fStr = `${currentYear}-${String(i).padLeft(2,0)}-${day}`;
+                        let fStr = `${currentYear}-${String(i).padLeft(2,0)}-${day}`;
+                        if (i == 2 && day > 28 && currentYear % 4 != 0) {
+                            fStr = fStr.replace(fStr.slice(-2), '28');
+//                            console.log('Handling dumbass February: %s', fStr);
+                        }
                         hasEvent(fStr);
                     }
+                    events.monthly[day].push(elm)
                     break;
 
                 case 'weekly':
-                    day = dayOfWeek(elm.date);
-                    startFrom = elm.date.substring(0,5) == currentYear ? day : 1;
+                    day = getDayOfWeek(elm.date);
+                    const theseDays = container.querySelectorAll('[data-weekday="${day}"]');
+                    startFrom = Number(elm.date.replaceAll('-', ''));
+                    [...theseDays].forEach(_this => {
+                        const date = Number(_this.id.replaceAll('-', ''));
+                        if (date > startFrom) hasEvent(_this.id)
+                    })
+
+                    events.weekly[day].push(elm)
                     break;
 
                 default:
@@ -359,7 +344,7 @@ export default function EventCalendar () {
         const events   = state.get('events'),
               date     = state.get('day'),
               today    = events.singles[date],
-              weekly   = events.weekly[dayOfWeek(date)],
+              weekly   = events.weekly[getDayOfWeek(date)],
               monthly  = events.monthly[date.substring(5,7)],
               annually = events.annually[date.substring(5)],
               listItem = (type, label, i) => (`<li class='event-list-item' data-index='${type}-${i}'>${label}</li>`);
@@ -368,8 +353,8 @@ export default function EventCalendar () {
 
         if (today) today.forEach((event, i) => html += listItem('singles', event.name, i));
         if (annually) annually.forEach((event, i) => html += listItem('annually', event.name, i));
-        if (weekly != []) weekly.forEach((event, i) => html += listItem('weekly', event.name, i));
-        if (monthly != []) monthly.forEach((event, i) => html += listItem('monthly', event.name, i));
+        if (weekly) weekly.forEach((event, i) => html += listItem('weekly', event.name, i));
+        if (monthly) monthly.forEach((event, i) => html += listItem('monthly', event.name, i));
 
         eventFeed.innerHTML = html;
         clickEach([...eventFeed.getElementsByClassName('event-list-item')], getEventDetails, {capture: true})
@@ -391,11 +376,11 @@ export default function EventCalendar () {
                 break;
 
             case 'monthly':
-                nest = state.get('day').substring(-2);
+                nest = moment(state.get('day')).format('DD');
                 break;
 
             case 'weekly':
-                nest = moment(state.get('day')).format('DDD');
+                nest = getDayOfWeek(state.get('day'));
                 break;
 
             default:
@@ -405,22 +390,37 @@ export default function EventCalendar () {
         const show = nest ? events[type][nest][index] : events.singles[state.get('day')][index];
 
         (function (event) {
+            let d = '';
             const
                 name  = event.name,
                 start = event.time_start ? `Starts @ ${event.time_start}` : '',
                 end   = event.time_end ? `Ends @ ${event.time_end}` : '',
                 desc  = event.description || '(No Description)';
 
-            details.innerHTML = (`
+            d = (`
                 <h3 class='event-details__title'>${name}</h3>
-                <p class='event-details__time'>${start}</p>
-                <p class='event-details__time'>${end}</p>
+                <p class='event-details__time-start'>${start}</p>
+                <p class='event-details__time-end'>${end}</p>
                 <p class='event-details__description'>${desc}</p>
-            `)
+            `);
+
+            if (event.is_paid_event) {
+                const
+                    ticket = event.price_ticket,
+                    door   = event.price_door;
+
+                d += (`
+                    <br />
+                    <p class='event-details__price-ticket'>${ticket}</p>
+                    <p class='event-details__price-door'>${door}</p>
+                `);
+            }
+
+            details.innerHTML = d;
         })(show)
     }
 
-    return (() => {
+    return (callback => {
         if (container) {
             container.classList.add('calendar');
             //funception
@@ -432,5 +432,7 @@ export default function EventCalendar () {
             console.log(`element with id "${containerId}" not found`)
             return false;
         }
+
+        if (typeof callback == 'function') callback()
     })()
 }

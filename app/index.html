@@ -13,13 +13,12 @@
     <script src='temp/js/vendor.js'></script>
     <!--  endbuild -->
 
-    <nav class="Admin-Panel__Top-Nav"></nav>
-
-    <section class='Admin-Panel'>
+    <main id='Admin-Panel' class='Admin-Panel'>
+        <nav class="Admin-Panel__Top-Nav"></nav>
 
         <aside class="Admin-Panel__sidebar">
-            <div class="attach-middle">
-                <div id='section-toggle-calendar' class="tooltip">
+            <div id='section-toggle-buttons' class="attach-middle">
+                <div id='section-toggle-events' class="tooltip">
                     <span class="tooltip-text">Calendar/Events</span>
                     <img src="assets/img/icons/calendar.svg" alt="calendar icon" />
                 </div>
@@ -35,19 +34,22 @@
         </aside>
 
         <aside class="Admin-Panel__sidepane">
-            <div class="_partial" data-view="events/pane"></div>
-<!--            <div class="_partial" data-view="tasks/pane"></div>-->
-<!--            <div class="_partial" data-view="files/pane"></div>-->
+            <div class="wrapper">
+                <div class="_partial" data-view="events/pane"></div>
+                <div class="_partial" data-view="tasks/pane"></div>
+                <div class="_partial" data-view="files/pane"></div>
+            </div>
         </aside>
         <article class='Admin-Panel__content'>
-            <div class='Admin-Panel__background-image' ><div/>
-
-            <div class="_partial" data-view="events/content"></div>
-<!--            <div class="_partial" data-view="tasks/content"></div>-->
-<!--            <div class="_partial" data-view="files/content"></div>-->
+            <div class='Admin-Panel__background-image' ></div>
+            <div class="wrapper">
+                <div class="_partial" data-view="events/content"></div>
+                <div class="_partial" data-view="tasks/content"></div>
+                <div class="_partial" data-view="files/content"></div>
+           </div>
         </article>
 
-    </section>
+    </main>
 
     <!--  build:js assets/js/admin.js -->
     <script src='temp/js/app.js'></script>

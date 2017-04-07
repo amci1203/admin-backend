@@ -321,7 +321,7 @@ img { max-width: 100%; height: auto;}
     .calendar__month { position: absolute; width: 100%; border-radius: 15px; border-collapse: collapse; display: none; z-index: -100;}
     .calendar__month thead:not(.calendar__heading) { background-color: #FFF; color: rgb(65, 105, 225);}
     .calendar__month tbody td { position: relative; padding: 10px 5px; border: 1px solid #FFF; border-collapse: collapse; text-align: right;}
-    .calendar__month tbody td .has-event { position: absolute; top: 10px; left: 10px; height: 15px; width: 15px; border-radius: 7.5px; background-color: #FFF;}
+    .calendar__month tbody td .has-event { position: absolute; top: 10px; left: 10px; height: 7px; width: 7px; border-radius: 3.5px; background-color: #FFF;}
     .calendar__month tbody td.empty { color: rgba(0, 0, 0, 0);}
     .calendar__month tbody td:not(.empty) { cursor: pointer;}
     .calendar__month tbody td.active { background-color: #FFF; color: rgb(65, 105, 225);}
@@ -726,7 +726,7 @@ img { max-width: 100%; height: auto;}
     /* MULTIPLE USE BLOCKS END */
 
     /* SINGLE USE BLOCKS */
-    .Admin-Panel { height: 100%;}
+    .Admin-Panel { position: relative; height: 100%;}
     .Admin-Panel > * { position: relative; float: left; height: 100%;}
     .Admin-Panel .attach- {}
     .Admin-Panel .attach-top { top: 125px;}
@@ -735,11 +735,11 @@ img { max-width: 100%; height: auto;}
     .Admin-Panel__Top-Nav { background-color: rgb(22, 52, 141); position: absolute; z-index: 1000; left: 0; right: 0; height: 45px;}
     .Admin-Panel__sidebar { background-color: rgb(51, 51, 51); color: rgb(128, 128, 128); width: 60px; z-index: 200;}
     .Admin-Panel__sidebar > * { position: absolute; width: 96%; margin: 0 2%; text-align: center;}
-    .Admin-Panel__sidebar > * button, .Admin-Panel__sidebar > * a.btn, .Admin-Panel__sidebar > * img { margin: 5px 0; padding: 10px;}
-    .Admin-Panel__sidebar > * button:hover, .Admin-Panel__sidebar > * a.btn:hover, .Admin-Panel__sidebar > * img:hover { cursor: pointer;}
-    .Admin-Panel__sidebar > * button:hover, .Admin-Panel__sidebar > * a.btn:hover, .Admin-Panel__sidebar > * img:hover { background-color: rgb(26, 26, 26);}
+    .Admin-Panel__sidebar > * a.btn, .Admin-Panel__sidebar > * img { margin: 5px 0; padding: 10px;}
+    .Admin-Panel__sidebar > * a.btn:hover, .Admin-Panel__sidebar > * img:hover { cursor: pointer;}
+    .Admin-Panel__sidebar > * a.btn:hover, .Admin-Panel__sidebar > * img:hover { background-color: rgb(26, 26, 26);}
     .Admin-Panel__sidepane { background-color: rgb(230, 230, 230); padding: 75px 0 25px 0; color: rgb(77, 77, 77); width: 320px; z-index: 100;}
-    .Admin-Panel__sidepane > * > * { position: absolute; width: 100%; text-align: center;}
+    .Admin-Panel__sidepane > * > * { position: absolute; width: calc(100% - 36px); text-align: center;}
     .Admin-Panel__sidepane > * > * button, .Admin-Panel__sidepane > * > * a.btn {}
     .Admin-Panel__content { width: calc(100% - 60px - 320px); padding-top: 80px;}
     .Admin-Panel__content .background-image { position: absolute; opacity: 0.25; height: 80%;}

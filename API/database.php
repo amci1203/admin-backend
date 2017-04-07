@@ -13,26 +13,13 @@ $conn = new ExtendedPdo(
     ]
 );
 
-function getEvents () {
-    global $conn;
-
-    $today = date('Ymd');
-    $query = 'SELECT * FROM `events` WHERE date >= ' . date('Y') . '-01-01 ORDER BY `date`';
-    $res   = $conn->fetchAll($query);
-
-    echo json_encode($res);
+function dbFile ($filename) {
+    return 'db/' . $filename . '.php';
 }
 
-function postEvents () {
-    global $conn;
-
-    $post = $_POST;
-    $args = $post['args'];
-
-    $query = 'INSERT INTO `events` (`name`, `date`, `time_start`, `time_end`, `repeats`, `description`) ' .
-        'VALUES (:name, :time_start, :time_end, :date, :repeats, :description)';
-    $res   = $conn->perform($query, $args);
-}
+include dbFile('events');
+include dbFile('tasks');
+include dbFile('files');
 
 function test () {
     $post = $_POST;

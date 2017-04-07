@@ -44,7 +44,7 @@
                 position: absolute;
                 top: 10px;
                 left: 10px;
-                height: 15px;
+                height: 7px;
                 width: @height;
                 border-radius: calc(@height / 2);
                 background-color: #FFF;

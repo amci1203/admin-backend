@@ -26,8 +26,8 @@ export default function slide (_images, currentImage, direction, transition, cb)
     }
     if (direction == 'right') {
         if (!zooms) {
-            newAnimateCls = 'slide-left-in';
-            oldAnimateCls = 'slide-left-out';
+            newAnimateCls = 'slide-right-in';
+            oldAnimateCls = 'slide-right-out';
         }
         const to = numImages - 1 == currentImage ? 0 : currentImage + 1;
         newCurrent = to;
@@ -36,8 +36,8 @@ export default function slide (_images, currentImage, direction, transition, cb)
     }
     else if (direction == 'left') {
         if (!zooms) {
-            newAnimateCls = 'slide-right-in';
-            oldAnimateCls = 'slide-right-out';
+            newAnimateCls = 'slide-left-in';
+            oldAnimateCls = 'slide-left-out';
         }
         const to = currentImage == 0 ? numImages - 1 : currentImage - 1;
         newCurrent = to;

@@ -1,6 +1,8 @@
 <?php
     // Don't allow this script to be accessed directly
-    if ( !isset($_SERVER['HTTP_X_REQUESTED_WITH']) ) die('ACCESS DENIED');
+    if ( !isset($_SERVER['HTTP_X_REQUESTED_WITH']) ) {
+        header('Location: ' . $_SERVER['DOCUMENT_ROOT'] . '/no.html');
+    }
 
     require '../API/auth0.php';
 
